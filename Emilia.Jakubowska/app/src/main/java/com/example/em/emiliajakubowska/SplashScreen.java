@@ -12,8 +12,7 @@ import android.widget.Button;
  */
 
 public class SplashScreen extends Activity {
-    private static final int TIME = 5000;
-    Button stopButton;
+       Button stopButton;
     private Handler handler;
     Runnable runnable;
 
@@ -25,7 +24,7 @@ public class SplashScreen extends Activity {
 
         Button stopButton = (Button) findViewById(R.id.button);
 
-handler = new Handler();
+        handler = new Handler();
         handler.postDelayed(runnable = new Runnable() {
             @Override
             public void run() {
@@ -42,5 +41,11 @@ handler = new Handler();
                 handler.removeCallbacks(runnable);
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
     }
 }
