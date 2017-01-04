@@ -12,7 +12,7 @@ import android.widget.Button;
  */
 
 public class SplashScreen extends Activity {
-       Button stopButton;
+    Button stopButton;
     private Handler handler;
     Runnable runnable;
 
