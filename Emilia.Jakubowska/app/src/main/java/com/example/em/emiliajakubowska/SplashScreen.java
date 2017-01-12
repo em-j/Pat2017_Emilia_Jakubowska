@@ -15,12 +15,12 @@ public class SplashScreen extends Activity {
     Button stopButton;
     private Handler handler;
     Runnable runnable;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-
 
         Button stopButton = (Button) findViewById(R.id.button);
 
@@ -34,7 +34,7 @@ public class SplashScreen extends Activity {
                 // close this activity
                 finish();
             }
-        }, 5000);
+        }, 1000);
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,9 +43,11 @@ public class SplashScreen extends Activity {
         });
     }
 
+
     @Override
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(runnable);
     }
 }
+
