@@ -13,15 +13,13 @@ public class SessionManager {
     SharedPreferences.Editor editor;
     Context ctx;
 
-    // Shared preferences mode
     int PRIVATE_MODE = 0;
 
-    // Shared preferences file name
     public static final String PREFER_NAME = "com.example.em.emiliajakubowska";
-    // All Shared Preferences Keys
     public static final String LOGIN = "LoggedIn";
     public static final String KEY_EMAIL = "EMAIL";
     public static final String KEY_PASS = "PASSWORD";
+    public boolean buttonPressed = false;
 
     public SessionManager(Context context) {
         this.ctx = context;
@@ -30,28 +28,21 @@ public class SessionManager {
     }
 
     public void LoginSession(Object uEmail, Object uPass) {
-        // Storing login value as TRUE
+
         editor.putBoolean(LOGIN, true);
         editor.putString(KEY_EMAIL, (String) uEmail);
         editor.putString(KEY_PASS, (String) uPass);
-
         editor.commit();
     }
 
     public void logoutUser() {
-        // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
 
-        // After logout redirect user to MainActivity
         Intent i = new Intent(ctx, MainActivity.class);
-        // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        // Staring Login Activity
         ctx.startActivity(i);
     }
 

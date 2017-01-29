@@ -8,23 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
 
-
-public class MainActivity extends AppCompatActivity {
-
-    private static final Pattern EMAIL_ADDRESS_PATTERN =
-            Pattern.compile(
-                    "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                            "\\@" +
-                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                            "(" +
-                            "\\." +
-                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                            ")+"
-            );
-    private static final Pattern PASSWORD_PATTERN = Pattern
-            .compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20})");
+public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     EditText email, password;
     Button btnLogIn;
@@ -67,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //Valid correct, go to new intent
                 else {
-                        email.setError(null);
-                        password.setError(null);
-                        session.createLogged(true);
-                        //pass into activity LogIn
+                    email.setError(null);
+                    password.setError(null);
+                    session.createLogged(true);
+                    //pass into activity LogIn
 
-                        Toast.makeText(MainActivity.this, "Zostałaś/eś zalogowany", Toast.LENGTH_LONG).show();
-                        startLogIn();
+                    Toast.makeText(MainActivity.this, "Zostałaś/eś zalogowany", Toast.LENGTH_LONG).show();
+                    startLogIn();
 
                 }
             }
@@ -81,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void startLogIn() {
+    public void startLogIn() {
         Intent i = new Intent(getApplicationContext(), LogIn.class);
         startActivity(i);
         // close this activity
@@ -99,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         return PASSWORD_PATTERN.matcher(password).matches();
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
 }
 
