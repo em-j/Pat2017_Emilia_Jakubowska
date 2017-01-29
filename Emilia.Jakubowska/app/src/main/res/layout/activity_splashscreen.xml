@@ -15,11 +15,12 @@
 
     <Button
         android:text="@string/back"
-        android:layout_width="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button"
-        android:onClick="isPause"/>
+        />
 
 </RelativeLayout>
